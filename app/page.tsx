@@ -375,6 +375,14 @@ export default function Home() {
                   reading experiences.
                 </p>
               </div>
+
+              <a
+                href="/focus"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-offset-4"
+              >
+                Try FOCUS reading mode
+                <span aria-hidden="true">→</span>
+              </a>
             </aside>
           </div>
         </div>
