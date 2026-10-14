@@ -316,10 +316,19 @@ export default function Home() {
                 </h3>
               </div>
 
-              {readingModes.map((mode, index) => (
-                <article
+              {readingModes.map((mode, index) => {
+                const href = {
+                  SKIM: "/skim",
+                  MAP: "/map",
+                  FOCUS: "/focus",
+                }[mode.name];
+
+                return (
+                <a
                   key={mode.name}
-                  className={`group rounded-2xl border bg-surface p-5 transition-all hover:-translate-y-0.5 hover:shadow-md ${
+                  href={href}
+                  aria-label={`Open ${mode.name} reading mode`}
+                  className={`group block rounded-2xl border bg-surface p-5 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary ${
                     index === 0
                       ? "border-primary/30 ring-1 ring-primary/10"
                       : "border-border"
@@ -358,8 +367,9 @@ export default function Home() {
                   <p className="mt-4 border-t border-border pt-3 text-xs leading-5 text-text-muted">
                     {mode.detail}
                   </p>
-                </article>
-              ))}
+                </a>
+                );
+              })}
 
               <div
                 id="accessibility"
