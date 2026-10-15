@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 const clauses = [
   { id: 1, title: "Parties & Property", category: "Agreement", summary: "Identifies the landlord, tenant, and rented property.", x: 300, y: 55, color: "#6d5dfc" },
@@ -34,7 +35,19 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function MapReader() {
-  const [selectedId, setSelectedId] = useState(1);
+  const searchParams = useSearchParams();
+  const clauseParam = searchParams.get("clause");
+  const requestedClause = clauseParam ? Number(clauseParam) : 1;
+  const initialClause = clauses.some((clause) => clause.id === requestedClause)
+    ? requestedClause
+    : 1;
+
+  const [selectedId, setSelectedId] = useState(initialClause);
+
+  useEffect(() => {
+    setSelectedId(initialClause);
+  }, [initialClause]);
+
   const selected = clauses.find((clause) => clause.id === selectedId) ?? clauses[0];
 
   return (

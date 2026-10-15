@@ -328,6 +328,7 @@ export default function SkimReader() {
           <div className="overflow-hidden rounded-2xl border border-border bg-surface">
             {clauseSummaries.map((clause) => (
               <article
+                id={`clause-${clause.number}`}
                 key={clause.number}
                 className="flex flex-col gap-3 border-b border-border p-4 last:border-b-0 sm:flex-row sm:items-center sm:gap-5 sm:p-5"
               >
@@ -349,6 +350,13 @@ export default function SkimReader() {
                 >
                   Read clause
                   <span aria-hidden="true">→</span>
+                </a>
+                <a
+                  href={`/map?clause=${clause.number}`}
+                  className="inline-flex w-fit shrink-0 items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-medium transition-colors hover:border-primary/40 hover:text-primary"
+                >
+                  Explore in MAP
+                  <span aria-hidden="true">↗</span>
                 </a>
               </article>
             ))}
