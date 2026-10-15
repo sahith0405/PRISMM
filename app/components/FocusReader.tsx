@@ -60,6 +60,45 @@ export default function FocusReader() {
   const [lineSpacing, setLineSpacing] = useState(1.8);
   const [theme, setTheme] = useState<ReadingTheme>("standard");
   const [distractionFree, setDistractionFree] = useState(false);
+
+  // Restore saved reading preferences after the component mounts.
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("prismm-focus-preferences");
+      if (!saved) return;
+
+      const preferences = JSON.parse(saved);
+
+      if (typeof preferences.fontSize === "number" &&
+          preferences.fontSize >= 14 && preferences.fontSize <= 26) {
+        setFontSize(preferences.fontSize);
+      }
+
+      if (typeof preferences.lineSpacing === "number" &&
+          [1.5, 1.8, 2.1].includes(preferences.lineSpacing)) {
+        setLineSpacing(preferences.lineSpacing);
+      }
+
+      if (["standard", "warm", "contrast"].includes(preferences.theme)) {
+        setTheme(preferences.theme);
+      }
+    } catch {
+      // Ignore unavailable or invalid browser storage.
+    }
+  }, []);
+
+  // Persist preference changes in the browser.
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        "prismm-focus-preferences",
+        JSON.stringify({ fontSize, lineSpacing, theme })
+      );
+    } catch {
+      // The reader still works if browser storage is unavailable.
+    }
+  }, [fontSize, lineSpacing, theme]);
+
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
