@@ -86,7 +86,7 @@ export default function MapReader() {
             </div>
 
             <div className="overflow-x-auto">
-              <svg viewBox="0 0 600 800" role="group" aria-label="Diagram connecting 12 rental agreement clauses" className="mx-auto block w-full min-w-[420px] max-w-[650px]">
+              <svg viewBox="0 0 600 800" role="group" aria-label="Diagram connecting 12 rental agreement clauses" className="mx-auto block h-auto w-full max-w-[650px]">
                 {edges.map(([from, to]) => {
                   const a = clauses.find((clause) => clause.id === from)!;
                   const b = clauses.find((clause) => clause.id === to)!;

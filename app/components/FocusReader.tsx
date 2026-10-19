@@ -271,7 +271,7 @@ export default function FocusReader() {
                 <legend className="text-sm font-medium">Line spacing</legend>
                 <div className="mt-3 grid grid-cols-2 gap-2">
                   {[
-                    { label: "Comfortable", value: 1.6 },
+                    { label: "Comfortable", value: 1.8 },
                     { label: "Expanded", value: 2.1 },
                   ].map((option) => (
                     <button
