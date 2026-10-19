@@ -178,6 +178,17 @@ export default function FocusReader() {
         />
       </div>
 
+      {distractionFree && (
+        <button
+          type="button"
+          onClick={() => setDistractionFree(false)}
+          className={`fixed right-5 top-5 z-40 rounded-lg border ${current.border} ${current.panel} px-4 py-2.5 text-sm font-medium shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-600`}
+          aria-label="Exit distraction-free reading mode"
+        >
+          Exit distraction-free
+        </button>
+      )}
+
       {!distractionFree && (
         <header className={`border-b ${current.border}`}>
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5">
