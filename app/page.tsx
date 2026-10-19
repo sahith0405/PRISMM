@@ -190,7 +190,7 @@ export default function Home() {
 
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-xs font-medium text-text-secondary">
               <span className="h-2 w-2 rounded-full bg-amber-400" />
-              Interactive modes coming next
+              Three reading modes available
             </span>
           </div>
 

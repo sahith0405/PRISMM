@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import MapReader from "../components/MapReader";
 
 export const metadata: Metadata = {
-  title: "MAP | PRISMM",
+  title: "MAP",
   description:
     "Explore how clauses in a rental agreement connect with PRISMM MAP.",
 };

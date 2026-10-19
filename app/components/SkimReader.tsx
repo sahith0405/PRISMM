@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 const facts = [
   {
     category: "MONTHLY PAYMENT",
@@ -130,9 +132,9 @@ export default function SkimReader() {
     <main className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-20 border-b border-border bg-surface/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-          <a href="/" className="text-xl font-bold tracking-tight">
+          <Link href="/" className="text-xl font-bold tracking-tight">
             PRISMM<span className="text-primary">.</span>
-          </a>
+          </Link>
 
           <span className="hidden text-xs font-bold tracking-[0.16em] text-text-secondary sm:block">
             SKIM READING MODE

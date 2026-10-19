@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 const clauses = [
@@ -42,11 +42,17 @@ export default function MapReader() {
     ? requestedClause
     : 1;
 
-  const [selectedId, setSelectedId] = useState(initialClause);
-
-  useEffect(() => {
-    setSelectedId(initialClause);
-  }, [initialClause]);
+  const [selection, setSelection] = useState({
+    clauseParam,
+    selectedId: initialClause,
+  });
+  const selectedId =
+    selection.clauseParam === clauseParam
+      ? selection.selectedId
+      : initialClause;
+  const selectClause = (id: number) => {
+    setSelection({ clauseParam, selectedId: id });
+  };
 
   const selected = clauses.find((clause) => clause.id === selectedId) ?? clauses[0];
 
@@ -103,11 +109,11 @@ export default function MapReader() {
                     <g key={clause.id} role="button" tabIndex={0}
                       aria-label={`Clause ${clause.id}: ${clause.title}`}
                       aria-pressed={active}
-                      onClick={() => setSelectedId(clause.id)}
+                      onClick={() => selectClause(clause.id)}
                       onKeyDown={(event) => {
                         if (event.key === "Enter" || event.key === " ") {
                           event.preventDefault();
-                          setSelectedId(clause.id);
+                          selectClause(clause.id);
                         }
                       }}
                       className="cursor-pointer outline-none">
@@ -160,7 +166,7 @@ export default function MapReader() {
                     .flatMap(([from, to]) => [from, to].filter((id) => id !== selected.id))
                     .map((id) => clauses.find((clause) => clause.id === id)!)
                     .map((clause) => (
-                      <button key={clause.id} onClick={() => setSelectedId(clause.id)}
+                      <button key={clause.id} onClick={() => selectClause(clause.id)}
                         className="rounded-xl border border-border px-3 py-2 text-left text-xs font-semibold transition-colors hover:border-primary hover:bg-primary-soft focus-visible:outline-2 focus-visible:outline-primary">
                         {clause.id}. {clause.title}
                       </button>

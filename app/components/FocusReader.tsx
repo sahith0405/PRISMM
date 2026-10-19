@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type ReadingTheme = "standard" | "warm" | "contrast";
@@ -75,6 +76,8 @@ export default function FocusReader() {
           preferences.fontSize >= 14 &&
           preferences.fontSize <= 26
         ) {
+          // Browser storage is only available after hydration.
+          // eslint-disable-next-line react-hooks/set-state-in-effect
           setFontSize(preferences.fontSize);
         }
 
@@ -192,20 +195,20 @@ export default function FocusReader() {
       {!distractionFree && (
         <header className={`border-b ${current.border}`}>
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5">
-            <a href="/" className="text-xl font-bold tracking-tight">
+            <Link href="/" className="text-xl font-bold tracking-tight">
               PRISMM<span className="text-violet-600">.</span>
-            </a>
+            </Link>
 
             <span className="hidden text-sm opacity-70 sm:block">
               FOCUS READING MODE
             </span>
 
-            <a
+            <Link
               href="/#workspace"
               className={`rounded-lg border ${current.border} px-4 py-2 text-sm`}
             >
               Exit reader
-            </a>
+            </Link>
           </div>
         </header>
       )}
@@ -409,12 +412,12 @@ export default function FocusReader() {
                 Disclaimer: This fictional educational demonstration is not
                 a real rental agreement and does not constitute legal advice.
               </p>
-              <a
+              <Link
                 href="/#workspace"
                 className={`mt-5 inline-flex rounded-lg border ${current.border} px-4 py-2.5 text-sm`}
               >
                 ← Back to workspace
-              </a>
+              </Link>
             </div>
           </article>
         </div>
